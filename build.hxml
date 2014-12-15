@@ -1,0 +1,6 @@
+-js bin/game.js
+-main Main
+-cp src
+-lib boidz
+-lib thx.core
+-lib thx.unit

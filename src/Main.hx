@@ -14,11 +14,15 @@ class Main {
         display = new Display(render),
         players = [];
 
-    players.push(new Player(0x00aadd, stageWidth, stageHeight));
-    players.push(new Player(0xffbb00, stageWidth, stageHeight));
+    players.push(new Player("#00aadd", stageWidth, stageHeight));
+    players.push(new Player("#ffbb00", stageWidth, stageHeight));
+
+    players[0].setHome(50, 50);
+    players[1].setHome(stageWidth - 50, stageHeight - 50);
 
     for (player in players) {
       player.addFlock(200);
+      display.addRenderable(new CanvasHomeBase(player.home, player.color));
 
       for (flock in player.flocks) {
         display.addRenderable(new CanvasFlock(flock, player.color));

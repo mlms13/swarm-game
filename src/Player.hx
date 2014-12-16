@@ -1,26 +1,25 @@
 import boidz.Boid;
 import boidz.Flock;
 import boidz.rules.*;
+import thx.color.RGB;
 
 class Player {
-  public var color : UInt;
+  public var color : RGB;
   public var flocks : Array<Flock>;
-  public var homeX : Int;
-  public var homeY : Int;
+  public var home : HomeBase;
 
   public var canvasWidth : Int;
   public var canvasHeight : Int;
 
-  public function new(color : UInt, canvasWidth : Int, canvasHeight : Int) {
+  public function new(color : RGB, canvasWidth : Int, canvasHeight : Int) {
     this.color = color;
     this.canvasWidth = canvasWidth;
     this.canvasHeight = canvasHeight;
     flocks = [];
   }
 
-  public function setHomeCoords(x : Int, y : Int) {
-    homeX = x;
-    homeY = y;
+  public function setHome(x : Int, y : Int) {
+    home = new HomeBase(x, y);
   }
 
   public function addFlock(numberOfBoidz : Int) {

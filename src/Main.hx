@@ -1,5 +1,6 @@
 import boidz.Display;
 import boidz.render.canvas.*;
+import boidz.rules.*;
 import js.Browser;
 import thx.core.Timer;
 
@@ -12,7 +13,9 @@ class Main {
     var canvas = getCanvas(),
         render = new CanvasRender(canvas),
         display = new Display(render),
-        players = [];
+        players = [],
+        boundaries = new RespectBoundaries(0, stageWidth, 0, stageHeight, 20, 25),
+        canvasBoundaries = new CanvasBoundaries(boundaries);
 
     players.push(new Player("#00aadd", stageWidth, stageHeight));
     players.push(new Player("#ffbb00", stageWidth, stageHeight));
@@ -25,9 +28,12 @@ class Main {
       display.addRenderable(new CanvasHomeBase(player.home, player.color));
 
       for (flock in player.flocks) {
+        flock.addRule(boundaries);
         display.addRenderable(new CanvasFlock(flock, player.color));
       }
     }
+
+    display.addRenderable(canvasBoundaries);
 
     // handle drawing
     var renderings = [],

@@ -1,5 +1,6 @@
 import boidz.Display;
 import boidz.render.canvas.*;
+import boidz.Point;
 import boidz.rules.*;
 import js.Browser;
 import thx.core.Timer;
@@ -20,6 +21,7 @@ class Main {
     players.push(new Player("#00aadd", stageWidth, stageHeight));
     players.push(new Player("#ffbb00", stageWidth, stageHeight));
 
+    // set friendly home bases for both players
     players[0].setHome(50, 50);
     players[1].setHome(stageWidth - 50, stageHeight - 50);
 
@@ -27,11 +29,31 @@ class Main {
       player.addFlock(200);
       display.addRenderable(new CanvasHomeBase(player.home, player.color));
 
-      for (flock in player.flocks) {
-        flock.addRule(boundaries);
-        display.addRenderable(new CanvasFlock(flock, player.color));
+      for (swarm in player.swarms) {
+        swarm.addRule(boundaries);
+        display.addRenderable(new CanvasFlock(swarm, player.color));
       }
     }
+
+    // set swarm path for each player
+    // TODO: eventually this will be defined by the user
+    players[0].setSwarmPath(
+        players[0].swarms[0],
+        [
+          {x: 50, y: 50},
+          {x: stageWidth - 50, y: stageHeight - 50},
+          {x: 50, y: 50}
+        ]
+    );
+
+    players[1].setSwarmPath(
+        players[1].swarms[0],
+        [
+          {x: stageWidth - 50, y: stageHeight - 50},
+          {x: 50, y: 50},
+          {x: stageWidth - 50, y: stageHeight - 50}
+        ]
+    );
 
     display.addRenderable(canvasBoundaries);
 
@@ -46,8 +68,8 @@ class Main {
 
         var time = Timer.time();
         for (player in players) {
-          for (flock in player.flocks) {
-            flock.update();
+          for (swarm in player.swarms) {
+            swarm.update();
           }
         }
 

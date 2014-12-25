@@ -35,6 +35,15 @@ class Main {
       }
     }
 
+    // create combat rule for both players
+    // FIXME super messy code
+    for (swarm in players[0].swarms) {
+      swarm.addRule(new Combat(players[1].swarms));
+    }
+    for (swarm in players[1].swarms) {
+      swarm.addRule(new Combat(players[0].swarms));
+    }
+
     // set swarm path for each player
     // TODO: eventually this will be defined by the user
     players[0].setSwarmPath(

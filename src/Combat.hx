@@ -4,12 +4,14 @@ import boidz.IFlockRule;
 class Combat implements IFlockRule {
   @:isVar public var radius(get, set) : Float;
   public var enemySwarms : Array<Swarm>;
+  public var mySwarm : Swarm;
   public var enabled = true;
 
   var squareRadius : Float;
 
-  public function new(enemies : Array<Swarm>, ?radius : Float = 5) {
+  public function new(mySwarm: Swarm, enemies : Array<Swarm>, ?radius : Float = 5) {
     enemySwarms = enemies;
+    this.mySwarm = mySwarm;
     this.radius = radius;
   }
 
@@ -27,10 +29,13 @@ class Combat implements IFlockRule {
         // if enemy is within some radius of boid
         // attaaaaack!
         if ((dx * dx + dy * dy) <= squareRadius) {
+          // enemy dead
+          if (Math.random() > .5) {
+            swarm.boids.remove(enemy);
+          }
           // you dead
           if (Math.random() > .5) {
-            // delete enemy from swarm
-            swarm.boids.remove(enemy);
+            mySwarm.boids.remove(boid);
           }
         }
       }

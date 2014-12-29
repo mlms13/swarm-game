@@ -94,6 +94,27 @@ class Main {
       renderings.splice(1, 10);
       renderings.push(Timer.time() - before);
     });
+
+    // set up ui for adjusting swarm properties
+    var ui = new sui.Sui();
+    for (i in 0...players.length) {
+      var folder = ui.folder("Player " + (i + 1));
+      for (swarm in players[i].swarms) {
+        folder.float("Attack", swarm.attack, {
+          min: 1,
+          max: 20
+        }, function (v) {
+          swarm.attack = v;
+        });
+        folder.float("Defense", swarm.defense, {
+          min: 1,
+          max: 20
+        }, function (v) {
+          swarm.defense = v;
+        });
+      }
+    }
+    ui.attach();
   }
 
   static function getCanvas() {

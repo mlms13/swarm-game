@@ -2,6 +2,7 @@
 -main Main
 -cp src
 -lib boidz
+-lib sui
 -lib thx.color
 -lib thx.core
 -lib thx.unit

@@ -8,10 +8,15 @@ class Swarm extends Flock {
   public var avoidCollisions: boidz.rules.AvoidCollisions;
 
   // TODO: add other properties of the swarm that can be upgraded
+  public var attack : Float;
+  public var defense : Float;
 
   // initialize with basic flock rules
-  public function new() {
+  public function new(?attack = 10.0, ?defense = 10.0) {
     super();
+
+    this.attack = attack;
+    this.defense = defense;
 
     // set up the initial rules
     waypoints = new Waypoints(this, 30);

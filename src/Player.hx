@@ -28,8 +28,8 @@ class Player {
     swarm.waypoints.goals = path;
   }
 
-  public function addFlock(numberOfBoidz : Int) {
-    var swarm = new Swarm();
+  public function addFlock(numberOfBoidz : Int, ?attack = 10, ?defense = 10) {
+    var swarm = new Swarm(attack, defense);
     addBoidz(swarm, numberOfBoidz);
 
     // add swarm to the player's swarm array

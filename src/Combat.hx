@@ -30,11 +30,11 @@ class Combat implements IFlockRule {
         // attaaaaack!
         if ((dx * dx + dy * dy) <= squareRadius) {
           // enemy dead
-          if (Math.random() > .5) {
+          if (mySwarm.attack / (mySwarm.attack + swarm.defense) > Math.random()) {
             swarm.boids.remove(enemy);
           }
           // you dead
-          if (Math.random() > .5) {
+          if (swarm.attack / (swarm.attack + mySwarm.defense) > Math.random()) {
             mySwarm.boids.remove(boid);
           }
         }

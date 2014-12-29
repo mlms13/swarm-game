@@ -39,9 +39,13 @@ class Main {
     // FIXME super messy code
     for (swarm in players[0].swarms) {
       swarm.addRule(new Combat(swarm, players[1].swarms));
+      swarm.attack = 3;
+      swarm.defense = 3;
     }
     for (swarm in players[1].swarms) {
       swarm.addRule(new Combat(swarm, players[0].swarms));
+      swarm.attack = 1;
+      swarm.defense = 6;
     }
 
     // set swarm path for each player

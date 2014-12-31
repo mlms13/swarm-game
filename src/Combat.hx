@@ -19,7 +19,9 @@ class Combat implements IFlockRule {
 
   public function modify (boid : Boid):Void {
     var dx = 0.0,
-        dy = 0.0;
+        dy = 0.0,
+        totalAttack = 0.0,
+        totalDefense = 0.0;
 
     for (swarm in enemySwarms) {
       for (enemy in swarm.boids) {
@@ -29,12 +31,17 @@ class Combat implements IFlockRule {
         // if enemy is within some radius of boid
         // attaaaaack!
         if ((dx * dx + dy * dy) <= squareRadius) {
+          totalAttack = mySwarm.attack + (boid.data.neighbors * mySwarm.attackBonus);
+          totalDefense = swarm.defense + (enemy.data.neighbors * swarm.defenseBonus);
           // enemy dead
-          if (mySwarm.attack / (mySwarm.attack + swarm.defense) > Math.random()) {
+          if (totalAttack / (totalAttack + totalDefense) > Math.random()) {
             swarm.boids.remove(enemy);
           }
+
+          totalAttack = swarm.attack + (enemy.data.neighbors * swarm.attackBonus);
+          totalDefense = mySwarm.defense + (boid.data.neighbors * mySwarm.defenseBonus);
           // you dead
-          if (swarm.attack / (swarm.attack + mySwarm.defense) > Math.random()) {
+          if (totalAttack / (totalAttack + totalDefense) > Math.random()) {
             mySwarm.boids.remove(boid);
           }
         }

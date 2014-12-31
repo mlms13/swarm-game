@@ -10,6 +10,8 @@ class Swarm extends Flock {
   // TODO: add other properties of the swarm that can be upgraded
   public var attack : Float;
   public var defense : Float;
+  public var attackBonus : Float;
+  public var defenseBonus : Float;
 
   // initialize with basic flock rules
   public function new(?attack = 10.0, ?defense = 10.0) {
@@ -17,6 +19,9 @@ class Swarm extends Flock {
 
     this.attack = attack;
     this.defense = defense;
+
+    this.attackBonus = 0;
+    this.defenseBonus = 0;
 
     // set up the initial rules
     waypoints = new Waypoints(this, 30);

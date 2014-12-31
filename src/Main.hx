@@ -112,6 +112,18 @@ class Main {
         }, function (v) {
           swarm.defense = v;
         });
+        folder.float("Attack Bonus", swarm.attackBonus, {
+          min: 0,
+          max: 5
+        }, function (v) {
+          swarm.attackBonus = v;
+        });
+        folder.float("Defense Bonus", swarm.defenseBonus, {
+          min: 0,
+          max: 5
+        }, function (v) {
+          swarm.defenseBonus = v;
+        });
       }
     }
     ui.attach();

@@ -60,7 +60,7 @@ class Main {
     // set swarm path for each player
     // TODO: eventually this will be defined by the user
     players[0].setSwarmPath(
-        players[0].swarms[0],
+        players[1].swarms[0],
         [
           {x: 50, y: 50},
           {x: stageWidth - 50, y: stageHeight - 50},
@@ -69,7 +69,7 @@ class Main {
     );
 
     players[1].setSwarmPath(
-        players[1].swarms[0],
+        players[0].swarms[0],
         [
           {x: stageWidth - 50, y: stageHeight - 50},
           {x: 50, y: 50},

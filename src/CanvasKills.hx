@@ -5,14 +5,14 @@ import thx.color.HSL;
 class CanvasKills implements IRenderable<CanvasRender> {
   public var enabled : Bool = true;
   var combats : Array<Combat>;
-  var trail : Int;
+  var trailLength : Int;
   var trails : Array<Array<{ x : Float, y : Float, c : HSL, r : Float }>>;
   var counter = 0;
 
-  public function new(combats : Array<Combat>, trail = 400) {
+  public function new(combats : Array<Combat>, trailLength = 400) {
     this.combats = combats;
     this.trails = [];
-    this.trail = trail;
+    this.trailLength = trailLength;
   }
 
   public function render(render : CanvasRender) {
@@ -41,13 +41,13 @@ class CanvasKills implements IRenderable<CanvasRender> {
         ctx.beginPath();
         ctx.fillStyle = item.c.withAlpha((1-t/trails.length)).toCSS3();
         ctx.arc(item.x, item.y, item.r, 0, 2 * Math.PI, false);
-        item.r = item.r * (t < 50 ? 1.03 : 0.99);
+        item.r = item.r * (t < trailLength / 8 ? 1.03 : 0.99);
         ctx.fill();
       }
       t++;
     }
 
-    trails = trails.slice(0, trail);
+    trails = trails.slice(0, trailLength);
 
     counter++;
   }

@@ -27,7 +27,7 @@ class Swarm extends Flock {
     // set up the initial rules
     waypoints = new Waypoints(this, 30);
     towardCenter = new SteerTowardCenter(this, 10);
-    neighbors = new boidz.rules.CollectNeighbors(this, 30.0);
+    neighbors = new boidz.rules.CollectNeighbors(this, 20.0);
     avoidCollisions = new boidz.rules.AvoidCollisions();
 
     this.addRule(neighbors);

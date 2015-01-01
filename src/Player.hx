@@ -45,7 +45,7 @@ class Player {
         b = new Boid(
           home.x + Math.random() * 200 - 100,
           home.y + Math.random() * 200 - 100,
-          6.0,
+          Math.random() * 1 + 2.5,
           Math.random() * 360
         );
         b.data = { neighbors : [] };

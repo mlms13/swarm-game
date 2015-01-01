@@ -6,6 +6,7 @@ class Swarm extends Flock {
   public var waypoints : boidz.rules.Waypoints;
   public var towardCenter : boidz.rules.SteerTowardCenter;
   public var avoidCollisions: boidz.rules.AvoidCollisions;
+  public var neighbors: boidz.rules.CollectNeighbors;
 
   // TODO: add other properties of the swarm that can be upgraded
   public var attack : Float;
@@ -26,8 +27,10 @@ class Swarm extends Flock {
     // set up the initial rules
     waypoints = new Waypoints(this, 30);
     towardCenter = new SteerTowardCenter(this, 10);
-    avoidCollisions = new boidz.rules.AvoidCollisions(this, 30.0);
+    neighbors = new boidz.rules.CollectNeighbors(this, 30.0);
+    avoidCollisions = new boidz.rules.AvoidCollisions();
 
+    this.addRule(neighbors);
     this.addRule(avoidCollisions);
     this.addRule(towardCenter);
     this.addRule(waypoints);

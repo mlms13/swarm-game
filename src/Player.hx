@@ -48,6 +48,7 @@ class Player {
           6.0,
           Math.random() * 360
         );
+        b.data = { neighbors : [] };
       swarm.boids.push(b);
     }
   }

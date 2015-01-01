@@ -25,6 +25,9 @@ class Main {
     players[0].setHome(50, 50);
     players[1].setHome(stageWidth - 50, stageHeight - 50);
 
+    var combats = [];
+    display.addRenderable(new CanvasKills(combats));
+
     for (player in players) {
       player.addFlock(200);
       display.addRenderable(new CanvasHomeBase(player.home, player.color));
@@ -38,12 +41,16 @@ class Main {
     // create combat rule for both players
     // FIXME super messy code
     for (swarm in players[0].swarms) {
-      swarm.addRule(new Combat(swarm, players[1].swarms));
+      var combat = new Combat(swarm, players[1].swarms);
+      combats.push(combat);
+      swarm.addRule(combat);
       swarm.attack = 3;
       swarm.defense = 3;
     }
     for (swarm in players[1].swarms) {
-      swarm.addRule(new Combat(swarm, players[0].swarms));
+      var combat = new Combat(swarm, players[0].swarms);
+      combats.push(combat);
+      swarm.addRule(combat);
       swarm.attack = 1;
       swarm.defense = 6;
     }

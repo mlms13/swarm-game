@@ -28,7 +28,7 @@ class CanvasKills implements IRenderable<CanvasRender> {
                 Math.random() * 30 - 15,
                 Math.random() * 0.5 + 0.5,
                 Math.random() * 0.5 + 0.3),
-          r : Math.random() * 5
+          r : Math.random() * 3.2
         });
       }
       trails.unshift(t);
@@ -41,7 +41,7 @@ class CanvasKills implements IRenderable<CanvasRender> {
         ctx.beginPath();
         ctx.fillStyle = item.c.withAlpha((1-t/trails.length)).toCSS3();
         ctx.arc(item.x, item.y, item.r, 0, 2 * Math.PI, false);
-        item.r = item.r * 0.99;
+        item.r = item.r * (t < 50 ? 1.03 : 0.99);
         ctx.fill();
       }
       t++;

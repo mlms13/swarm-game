@@ -34,7 +34,9 @@ class Main {
 
       for (swarm in player.swarms) {
         swarm.addRule(boundaries);
-        display.addRenderable(new CanvasFlock(swarm, player.color));
+        var render = new CanvasFlock(swarm, player.color);
+        render.renderCentroid = false;
+        display.addRenderable(render);
       }
     }
 

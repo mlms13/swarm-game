@@ -43,8 +43,8 @@ class Player {
       var a = Math.random() * 2 * Math.PI,
         d = w * Math.random(),
         b = new Boid(
-          20 + (canvasWidth - 20 * 2) * Math.random(),
-          20 + (canvasHeight - 20 * 2) * Math.random(),
+          home.x + Math.random() * 200 - 100,
+          home.y + Math.random() * 200 - 100,
           6.0,
           Math.random() * 360
         );

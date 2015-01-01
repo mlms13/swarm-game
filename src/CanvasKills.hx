@@ -9,7 +9,7 @@ class CanvasKills implements IRenderable<CanvasRender> {
   var trails : Array<Array<{ x : Float, y : Float, c : HSL, r : Float }>>;
   var counter = 0;
 
-  public function new(combats : Array<Combat>, trail = 200) {
+  public function new(combats : Array<Combat>, trail = 400) {
     this.combats = combats;
     this.trails = [];
     this.trail = trail;

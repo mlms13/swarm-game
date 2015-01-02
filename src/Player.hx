@@ -25,7 +25,8 @@ class Player {
   }
 
   public function setSwarmPath(swarm : Swarm, path : Array<Point>) {
-    swarm.waypoints.goals = path;
+    for(point in path)
+      swarm.waypoints.addGoal(point.x, point.y);
   }
 
   public function addFlock(numberOfBoidz : Int, ?attack = 10, ?defense = 10) {

@@ -3,7 +3,7 @@ import boidz.rules.*;
 
 class Swarm extends Flock {
   // goals that all swarms must have
-  public var waypoints : boidz.rules.Waypoints;
+  public var waypoints : boidz.rules.IndividualWaypoints;
   public var towardCenter : boidz.rules.SteerTowardCenter;
   public var avoidCollisions: boidz.rules.AvoidCollisions;
   public var neighbors: boidz.rules.CollectNeighbors;
@@ -25,9 +25,9 @@ class Swarm extends Flock {
     this.defenseBonus = 0;
 
     // set up the initial rules
-    waypoints = new Waypoints(this, 30);
+    waypoints = new IndividualWaypoints(this, 30);
     towardCenter = new SteerTowardCenter(this, 10);
-    neighbors = new boidz.rules.CollectNeighbors(this, 20.0);
+    neighbors = new boidz.rules.CollectNeighbors(this, 30.0);
     avoidCollisions = new boidz.rules.AvoidCollisions();
 
     this.addRule(neighbors);

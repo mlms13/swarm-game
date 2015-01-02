@@ -43,11 +43,12 @@ class Player {
       var a = Math.random() * 2 * Math.PI,
         d = w * Math.random(),
         b = new Boid(
-          20 + (canvasWidth - 20 * 2) * Math.random(),
-          20 + (canvasHeight - 20 * 2) * Math.random(),
-          6.0,
+          home.x + Math.random() * 200 - 100,
+          home.y + Math.random() * 200 - 100,
+          Math.random() * 1 + 2.5,
           Math.random() * 360
         );
+        b.data = { neighbors : [] };
       swarm.boids.push(b);
     }
   }
